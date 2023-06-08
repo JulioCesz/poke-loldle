@@ -13,6 +13,11 @@ function chooseRandomPokemon() {
   return pokemonList[randomIndex];
 }
 
+function appendResult(result) {
+  const div = document.getElementById('resultado');
+  div.innerHTML = result;
+}
+
 // Função para comparar a tipagem dos Pokémon
 function compareTypes(guess, target) {
   if (guess.type === target.type) {
@@ -37,15 +42,14 @@ function playGuessThePokemon() {
   }
 
   const guessedPokemon = pokemonList.find(
-    (pokemon) => pokemon.name.toLowerCase() === guess.toLowerCase()
+    (pokemon) => pokemon.name.toLowerCase() === guess.toLowerCase(),
   );
 
   if (!guessedPokemon) {
-    console.log('Esse Pokémon não existe.');
+    appendResult('Esse Pokémon não existe.');
     return;
   }
-
-  console.log(compareTypes(guessedPokemon, targetPokemon));
+  appendResult(compareTypes(guessedPokemon, targetPokemon));
 }
 
 // Execução do jogo
